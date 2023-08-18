@@ -6,7 +6,6 @@ buildscript {
 
   dependencies {
     classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
-
     // This is so we can publish straight to Google Play
     classpath 'com.github.triplet.gradle:play-publisher:1.2.2'
   }
@@ -29,7 +28,7 @@ android {
   buildToolsVersion buildToolsVer
 
   defaultConfig {
-    applicationId "com.stealthcotper.networktools"
+    applicationId 'com.yova.plnscnet'
     minSdkVersion minSdkVer
     targetSdkVersion targetSdkVer
 
@@ -38,7 +37,7 @@ android {
     versionCode 21
 
     archivesBaseName = "AndroidNetworkTools"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   }
 
   //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
@@ -73,13 +72,17 @@ spoon {
 }
 
 dependencies {
-  implementation "com.android.support:appcompat-v7:$supportLibVer"
-  implementation "com.android.support:design:$supportLibVer"
+  implementation 'androidx.appcompat:appcompat:1.6.1'
+  implementation 'com.google.android.material:material:1.8.0'
+  implementation 'androidx.navigation:navigation-fragment:2.5.3'
+  implementation 'androidx.navigation:navigation-ui:2.5.3'
+  implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+  implementation 'de.hdodenhof:circleimageview:3.1.0'
   implementation project(':library')
 
   testImplementation 'junit:junit:4.12'
 
   androidTestImplementation 'com.squareup.spoon:spoon-client:1.6.4'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-  androidTestImplementation('com.android.support.test.espresso:espresso-intents:2.2')
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+  androidTestImplementation('androidx.test.espresso:espresso-intents:3.1.0')
 }

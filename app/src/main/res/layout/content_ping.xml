@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.yova.plnscnet.Homepage"
-    tools:showIn="@layout/activity_homepage"
+    tools:context="com.yova.plnscnet.Pingnet"
+    tools:showIn="@layout/activity_ping"
     >
 
     <LinearLayout
@@ -20,7 +20,6 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-        <!-- Dummy item to prevent EditText from receiving focus -->
         <LinearLayout
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -53,32 +52,13 @@
                 android:text="@string/ping"
                 />
 
-            <Button
-                android:id="@+id/wolButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wol"
-                />
-            <Button
-                android:id="@+id/portScanButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/port_scan"
-                />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/subnetDevicesButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/subnet"
-                />
 
         </LinearLayout>
 
