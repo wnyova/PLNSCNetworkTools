@@ -15,18 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.yova.plnscnet.ping.PingResult;
-import com.yova.plnscnet.ping.PingStats;
+import com.yova.plnscnet.PortScan;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.ArrayList;
 
-public class Pingnet extends AppCompatActivity {
+public class PortScanning extends AppCompatActivity {
 
     private TextView resultText;
     private EditText editIpAddress;
     private ScrollView scrollView;
-    private Button pingmulai;
+    private Button portScanButton;
 
 
     @Override
@@ -41,11 +40,10 @@ public class Pingnet extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_ping);
+        setContentView(R.layout.activity_port_scanning);
 
-        LinearLayout pingmulai = findViewById(R.id.pingmulai);
+        LinearLayout portScanButton = findViewById(R.id.portScanButton);
         LinearLayout resetbutton = findViewById(R.id.resetall);
-
 
         resultText = findViewById(R.id.resultText);
         editIpAddress = findViewById(R.id.editIpAddress);
@@ -62,21 +60,19 @@ public class Pingnet extends AppCompatActivity {
             }
         });
 
-
-
         InetAddress ipAddress = IPTools.getLocalIPv4Address();
         if (ipAddress != null){
             editIpAddress.setText(ipAddress.getHostAddress());
         }
 
-        pingmulai.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.portScanButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            doPing();
+                            doPortScan();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -84,7 +80,6 @@ public class Pingnet extends AppCompatActivity {
                 }).start();
             }
         });
-
     }
     private void appendResultsText(final String text) {
         runOnUiThread(new Runnable() {
@@ -100,7 +95,6 @@ public class Pingnet extends AppCompatActivity {
             }
         });
     }
-
     private void setEnabled(final View view, final boolean enabled) {
         runOnUiThread(new Runnable() {
             @Override
@@ -111,58 +105,39 @@ public class Pingnet extends AppCompatActivity {
             }
         });
     }
-    private void doPing() throws Exception {
+
+    private void doPortScan() throws Exception {
         String ipAddress = editIpAddress.getText().toString();
 
         if (TextUtils.isEmpty(ipAddress)) {
             appendResultsText("Invalid Ip Address");
+            setEnabled(portScanButton, true);
             return;
         }
 
-        setEnabled(pingmulai, false);
+        setEnabled(portScanButton, false);
 
-        // Perform a single synchronous ping
-        PingResult pingResult = null;
-        try {
-            pingResult = Ping.onAddress(ipAddress).setTimeOutMillis(1000).doPing();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            appendResultsText(e.getMessage());
-            setEnabled(pingmulai, true);
-            return;
-        }
+        // Perform synchronous port scan
+        appendResultsText("PortScanning IP: " + ipAddress);
+        ArrayList<Integer> openPorts = PortScan.onAddress(ipAddress).setPort(21).setMethodTCP().doScan();
 
-        appendResultsText("Pinging Address: " + pingResult.getAddress().getHostAddress());
-        appendResultsText("HostName: " + pingResult.getAddress().getHostName());
-        appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
+        final long startTimeMillis = System.currentTimeMillis();
 
-
-        Ping.onAddress(ipAddress).setTimeOutMillis(1000).setTimes(5).doPing(new Ping.PingListener() {
+        // Perform an asynchronous port scan
+        PortScan portScan = PortScan.onAddress(ipAddress).setPortsAll().setMethodTCP().doScan(new PortScan.PortListener() {
             @Override
-            public void onResult(PingResult pingResult) {
-                if (pingResult.isReachable) {
-                    appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
-                } else {
-                    appendResultsText(getString(R.string.timeout));
-                }
+            public void onResult(int portNo, boolean open) {
+                if (open) appendResultsText("Open: " + portNo);
             }
 
             @Override
-            public void onFinished(PingStats pingStats) {
-                appendResultsText(String.format("Pings: %d, Packets lost: %d",
-                        pingStats.getNoPings(), pingStats.getPacketsLost()));
-                appendResultsText(String.format("Min/Avg/Max Time: %.2f/%.2f/%.2f ms",
-                        pingStats.getMinTimeTaken(), pingStats.getAverageTimeTaken(), pingStats.getMaxTimeTaken()));
-                setEnabled(pingmulai, true);
+            public void onFinished(ArrayList<Integer> openPorts) {
+                appendResultsText("Open Ports: " + openPorts.size());
+                appendResultsText("Time Taken: " + ((System.currentTimeMillis() - startTimeMillis)/1000.0f));
+                setEnabled(portScanButton, true);
             }
 
-            @Override
-            public void onError(Exception e) {
-                // TODO: STUB METHOD
-                setEnabled(pingmulai, true);
-            }
+
         });
-
     }
-
 }

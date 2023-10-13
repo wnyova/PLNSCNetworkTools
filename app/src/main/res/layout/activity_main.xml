@@ -18,7 +18,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="330dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
@@ -42,11 +42,11 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/top_background_gradient" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:id="@+id/profile_image"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
-                    android:src="@drawable/arastt"
+                    android:src="@drawable/plnsc1"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -87,9 +87,9 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="190dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@drawable/white_top_buttons"
                     android:elevation="4dp"
                     android:orientation="horizontal"
@@ -109,7 +109,7 @@
                         android:orientation="vertical"
 
                         >
- <!--                       <Button
+                        <!--                       <Button
                             android:id="@+id/button1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -118,18 +118,18 @@
                         <ImageView
                             android:id="@+id/certimg"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="10dp"
-                            app:srcCompat="@drawable/video_call" />
+                            android:src="@drawable/ping_bk" />
 
                         <TextView
                             android:id="@+id/certtext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:text="Vedio Call"
+                            android:layout_margin="1dp"
+                            android:text="Ping"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#3D405b"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -140,26 +140,26 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/purple_top_buttons"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/courseimg"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="10dp"
-                            app:srcCompat="@drawable/notification" />
+                            app:srcCompat="@drawable/gate_bw" />
 
                         <TextView
                             android:id="@+id/coursetextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:text="Notification"
+                            android:layout_margin="1dp"
+                            android:text="Port \nScanning"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#3D405b"
                             android:textStyle="bold" />
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/skills"
@@ -173,45 +173,51 @@
                         <ImageView
                             android:id="@+id/skillsimg"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="10dp"
-                            app:srcCompat="@drawable/voice_call" />
+                            app:srcCompat="@drawable/search_bw" />
 
                         <TextView
                             android:id="@+id/skillstext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:text="Vedio Call"
+                            android:layout_margin="1dp"
+                            android:text="Scan Devices"
                             android:textAlignment="center"
-                            android:textColor="#7182ef"
+                            android:textColor="#3D405b"
                             android:textStyle="bold" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/purple_top_buttons"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/wolimg"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_margin="10dp"
+                            app:srcCompat="@drawable/wol_bk" />
+
+                        <TextView
+                            android:id="@+id/woltext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:text="WoL"
+                            android:textAlignment="center"
+                            android:textColor="#3D405b"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName3"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/background_edit_text"
-                    android:drawableEnd="@drawable/search_icon"
-                    android:ems="10"
-                    android:hint="Search for..."
-                    android:inputType="textPersonName"
-                    android:textColor="#8D8D8D"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="4dp"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.473"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintVertical_bias="0.904" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -219,7 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="130sp"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/banner_background">
@@ -241,7 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="To Get Unlimited"
+                    android:text="PT. PLNSC"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -255,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Upgrade Your Account"
+                    android:text="Network Utilities"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -274,114 +280,10 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/FlashlightMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/eduimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_1" />
-
-                        <TextView
-                            android:id="@+id/edutext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Inbox"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/hobbyimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_2" />
-
-                        <TextView
-                            android:id="@+id/hobbytext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Maps"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/areaimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_3" />
-
-                        <TextView
-                            android:id="@+id/areastext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Chats"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -401,19 +303,19 @@
                         <ImageView
                             android:id="@+id/contactimg"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="50dp"
                             android:layout_marginStart="16sp"
                             android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_4" />
+                            app:srcCompat="@drawable/flashlight_bk" />
 
                         <TextView
                             android:id="@+id/contacttext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Report"
+                            android:text="Flashlight"
                             android:textAlignment="center"
-                            android:textColor="#2e3d6d"
+                            android:textColor="#3D405b"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -425,160 +327,9 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/toolsimg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_5" />
-
-                        <TextView
-                            android:id="@+id/toolstext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Calander"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/langimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_6" />
-
-                        <TextView
-                            android:id="@+id/langtext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Tips"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/aboutimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_7" />
-
-                        <TextView
-                            android:id="@+id/abouttext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Setting"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/white_top_buttons"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/white_top_buttons">
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <ImageView
-                            android:id="@+id/moreimg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="16sp"
-                            android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/ic_8" />
-
-                        <TextView
-                            android:id="@+id/moretext"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:layout_marginTop="8dp"
-                            android:text="More"
-                            android:textAlignment="center"
-                            android:textColor="#2e3d6d"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="220dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="100dp"
-                android:text="arastu_creations"
-                android:textSize="20dp"
-                android:textStyle="italic" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

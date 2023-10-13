@@ -15,20 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.yova.plnscnet.ping.PingResult;
-import com.yova.plnscnet.ping.PingStats;
-
+import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
-public class Pingnet extends AppCompatActivity {
+
+public class WoL extends AppCompatActivity {
 
     private TextView resultText;
     private EditText editIpAddress;
     private ScrollView scrollView;
-    private Button pingmulai;
-
-
+    private Button hittarget;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +37,10 @@ public class Pingnet extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_ping);
+        setContentView(R.layout.activity_wol);
 
-        LinearLayout pingmulai = findViewById(R.id.pingmulai);
+        LinearLayout hittarget = findViewById(R.id.hittarget);
         LinearLayout resetbutton = findViewById(R.id.resetall);
-
 
         resultText = findViewById(R.id.resultText);
         editIpAddress = findViewById(R.id.editIpAddress);
@@ -62,21 +57,19 @@ public class Pingnet extends AppCompatActivity {
             }
         });
 
-
-
         InetAddress ipAddress = IPTools.getLocalIPv4Address();
         if (ipAddress != null){
             editIpAddress.setText(ipAddress.getHostAddress());
         }
 
-        pingmulai.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.hittarget).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            doPing();
+                            doWakeOnLan();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -111,7 +104,8 @@ public class Pingnet extends AppCompatActivity {
             }
         });
     }
-    private void doPing() throws Exception {
+
+    private void doWakeOnLan() throws IllegalArgumentException {
         String ipAddress = editIpAddress.getText().toString();
 
         if (TextUtils.isEmpty(ipAddress)) {
@@ -119,50 +113,29 @@ public class Pingnet extends AppCompatActivity {
             return;
         }
 
-        setEnabled(pingmulai, false);
+        setEnabled(hittarget, false);
 
-        // Perform a single synchronous ping
-        PingResult pingResult = null;
-        try {
-            pingResult = Ping.onAddress(ipAddress).setTimeOutMillis(1000).doPing();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            appendResultsText(e.getMessage());
-            setEnabled(pingmulai, true);
+        appendResultsText("IP address: " + ipAddress);
+
+        String macAddress = ARPInfo.getMACFromIPAddress(ipAddress);
+
+        if (macAddress == null) {
+            appendResultsText("Could not from IPAddress MAC address, cannot send WOL packet without it.");
+            setEnabled(hittarget, true);
             return;
         }
 
-        appendResultsText("Pinging Address: " + pingResult.getAddress().getHostAddress());
-        appendResultsText("HostName: " + pingResult.getAddress().getHostName());
-        appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
+        appendResultsText("MAC address: " + macAddress);
+        appendResultsText("IP address2: " + ARPInfo.getIPAddressFromMAC(macAddress));
 
-
-        Ping.onAddress(ipAddress).setTimeOutMillis(1000).setTimes(5).doPing(new Ping.PingListener() {
-            @Override
-            public void onResult(PingResult pingResult) {
-                if (pingResult.isReachable) {
-                    appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
-                } else {
-                    appendResultsText(getString(R.string.timeout));
-                }
-            }
-
-            @Override
-            public void onFinished(PingStats pingStats) {
-                appendResultsText(String.format("Pings: %d, Packets lost: %d",
-                        pingStats.getNoPings(), pingStats.getPacketsLost()));
-                appendResultsText(String.format("Min/Avg/Max Time: %.2f/%.2f/%.2f ms",
-                        pingStats.getMinTimeTaken(), pingStats.getAverageTimeTaken(), pingStats.getMaxTimeTaken()));
-                setEnabled(pingmulai, true);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                // TODO: STUB METHOD
-                setEnabled(pingmulai, true);
-            }
-        });
-
+        try {
+            WakeOnLan.sendWakeOnLan(ipAddress, macAddress);
+            appendResultsText("WOL Packet sent");
+        } catch (IOException e) {
+            appendResultsText(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            setEnabled(hittarget, true);
+        }
     }
-
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
+    android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
 
@@ -22,7 +22,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            app:srcCompat="@drawable/usericon" />
+            app:srcCompat="@drawable/plnsc1" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
@@ -46,7 +46,7 @@
             android:layout_marginTop="8dp"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorAccent">
+            app:passwordToggleTint="#3D405b">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
@@ -62,16 +62,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
+            android:background="#3D405b"
             android:text="@string/login"
             android:textColor="@android:color/white" />
 
-        <TextView
+        <Button
             android:id="@+id/textViewCreateAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:gravity="center_horizontal" />
+            android:background="#3D405b" />
+
     </LinearLayout>
 </ScrollView>

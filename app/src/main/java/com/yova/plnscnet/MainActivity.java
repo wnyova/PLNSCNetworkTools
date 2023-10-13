@@ -31,18 +31,52 @@ public class MainActivity extends AppCompatActivity {
 
         nameUser = findViewById(R.id.textView2);
 
-        // Make a username set to someone login with - Yova
+        // Make a username set to someone login with - Yv
 
         String username=getIntent().getStringExtra("email");
         if(!TextUtils.isEmpty(username)){
             nameUser.setText(""+username);
         }
 
-        LinearLayout linearLayout = findViewById(R.id.cert);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        LinearLayout button1 = findViewById(R.id.cert);
+        LinearLayout button2 = findViewById(R.id.course);
+        LinearLayout button3 = findViewById(R.id.skills);
+        LinearLayout button4 = findViewById(R.id.wol);
+        LinearLayout button5 = findViewById(R.id.FlashlightMenu);
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Flashlight.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, WoL.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Route.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, PortScanning.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Pingnet.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 

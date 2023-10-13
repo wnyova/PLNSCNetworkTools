@@ -15,18 +15,20 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.yova.plnscnet.ping.PingResult;
-import com.yova.plnscnet.ping.PingStats;
+import com.yova.plnscnet.SubnetDevices;
+import com.yova.plnscnet.subnet.Device;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.ArrayList;
 
-public class Pingnet extends AppCompatActivity {
+public class Route extends AppCompatActivity {
 
     private TextView resultText;
-    private EditText editIpAddress;
+    // private EditText editIpAddress;
     private ScrollView scrollView;
-    private Button pingmulai;
+    private Button subnetDevicesButton;
+
+
 
 
     @Override
@@ -41,15 +43,15 @@ public class Pingnet extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_ping);
-
-        LinearLayout pingmulai = findViewById(R.id.pingmulai);
-        LinearLayout resetbutton = findViewById(R.id.resetall);
-
+        setContentView(R.layout.activity_route);
 
         resultText = findViewById(R.id.resultText);
-        editIpAddress = findViewById(R.id.editIpAddress);
+       // editIpAddress = findViewById(R.id.editIpAddress);
         scrollView = findViewById(R.id.scrollView1);
+
+        LinearLayout subnetDevicesButton = findViewById(R.id.subnetDevicesButton);
+        LinearLayout resetbutton = findViewById(R.id.resetall);
+
 
         resetbutton.setOnClickListener(new View.OnClickListener() {
 
@@ -62,21 +64,19 @@ public class Pingnet extends AppCompatActivity {
             }
         });
 
-
-
-        InetAddress ipAddress = IPTools.getLocalIPv4Address();
+    /*    InetAddress ipAddress = IPTools.getLocalIPv4Address();
         if (ipAddress != null){
             editIpAddress.setText(ipAddress.getHostAddress());
-        }
+        } */
 
-        pingmulai.setOnClickListener(new View.OnClickListener() {
+        subnetDevicesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            doPing();
+                            findSubnetDevices();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -84,7 +84,6 @@ public class Pingnet extends AppCompatActivity {
                 }).start();
             }
         });
-
     }
     private void appendResultsText(final String text) {
         runOnUiThread(new Runnable() {
@@ -111,56 +110,27 @@ public class Pingnet extends AppCompatActivity {
             }
         });
     }
-    private void doPing() throws Exception {
-        String ipAddress = editIpAddress.getText().toString();
 
-        if (TextUtils.isEmpty(ipAddress)) {
-            appendResultsText("Invalid Ip Address");
-            return;
-        }
+    private void findSubnetDevices() {
 
-        setEnabled(pingmulai, false);
+        setEnabled(subnetDevicesButton, false);
 
-        // Perform a single synchronous ping
-        PingResult pingResult = null;
-        try {
-            pingResult = Ping.onAddress(ipAddress).setTimeOutMillis(1000).doPing();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            appendResultsText(e.getMessage());
-            setEnabled(pingmulai, true);
-            return;
-        }
+        final long startTimeMillis = System.currentTimeMillis();
 
-        appendResultsText("Pinging Address: " + pingResult.getAddress().getHostAddress());
-        appendResultsText("HostName: " + pingResult.getAddress().getHostName());
-        appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
-
-
-        Ping.onAddress(ipAddress).setTimeOutMillis(1000).setTimes(5).doPing(new Ping.PingListener() {
+        SubnetDevices subnetDevices = SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
             @Override
-            public void onResult(PingResult pingResult) {
-                if (pingResult.isReachable) {
-                    appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
-                } else {
-                    appendResultsText(getString(R.string.timeout));
-                }
+            public void onDeviceFound(Device device) {
+                appendResultsText("Device: " + device.ip+" "+ device.hostname);
             }
 
             @Override
-            public void onFinished(PingStats pingStats) {
-                appendResultsText(String.format("Pings: %d, Packets lost: %d",
-                        pingStats.getNoPings(), pingStats.getPacketsLost()));
-                appendResultsText(String.format("Min/Avg/Max Time: %.2f/%.2f/%.2f ms",
-                        pingStats.getMinTimeTaken(), pingStats.getAverageTimeTaken(), pingStats.getMaxTimeTaken()));
-                setEnabled(pingmulai, true);
+            public void onFinished(ArrayList<Device> devicesFound) {
+                float timeTaken =  (System.currentTimeMillis() - startTimeMillis)/1000.0f;
+                appendResultsText("Devices Found: " + devicesFound.size());
+                appendResultsText("Finished "+timeTaken+" s");
+                setEnabled(subnetDevicesButton, true);
             }
 
-            @Override
-            public void onError(Exception e) {
-                // TODO: STUB METHOD
-                setEnabled(pingmulai, true);
-            }
         });
 
     }
