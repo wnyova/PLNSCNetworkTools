@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Pingmenu extends AppCompatActivity {
 
 
     private TextView nameUser;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pingmenu);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -38,44 +38,29 @@ public class MainActivity extends AppCompatActivity {
             nameUser.setText(""+username);
         }
 
-        LinearLayout button1 = findViewById(R.id.cert);
-        LinearLayout button2 = findViewById(R.id.course);
-        LinearLayout button3 = findViewById(R.id.skills);
-        LinearLayout button4 = findViewById(R.id.wol);
-        LinearLayout button5 = findViewById(R.id.FlashlightMenu);
+        LinearLayout button1 = findViewById(R.id.server);
+        LinearLayout button2 = findViewById(R.id.aps);
+        LinearLayout button3 = findViewById(R.id.vm);
 
-        button5.setOnClickListener(new View.OnClickListener() {
+
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Flashlight.class));
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, WoL.class));
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Route.class));
+                startActivity(new Intent(Pingmenu.this, Pingserver.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, PortScanning.class));
+                startActivity(new Intent(Pingmenu.this, Pingaps.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-        button1.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Pingmenu.class));
+                startActivity(new Intent(Pingmenu.this, Pingaps.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -89,6 +74,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
-
-
 }
