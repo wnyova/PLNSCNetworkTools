@@ -21,12 +21,12 @@ import android.widget.TextView;
 import com.yova.plnscnet.ping.PingResult;
 import com.yova.plnscnet.ping.PingStats;
 
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Pingaps extends AppCompatActivity {
+public class PingVMMenu extends AppCompatActivity {
 
     private TextView resultText;
-    private EditText editIpAddress;
     private ScrollView scrollView;
 
     @Override
@@ -41,49 +41,49 @@ public class Pingaps extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_pingaps);
+        setContentView(R.layout.activity_ping_vmmenu);
 
-        LinearLayout back_aps = findViewById(R.id.back_aps);
-        LinearLayout AP1Menu = findViewById(R.id.AP1Menu);
-        LinearLayout AP2Menu = findViewById(R.id.AP2Menu);
-        LinearLayout AP3Menu = findViewById(R.id.AP3Menu);
-        LinearLayout AP4Menu = findViewById(R.id.AP4Menu);
+        LinearLayout back_vm = findViewById(R.id.back_vm);
+        LinearLayout VM1Menu = findViewById(R.id.VM1Menu);
+        LinearLayout VM2Menu = findViewById(R.id.VM2Menu);
+        LinearLayout VM3Menu = findViewById(R.id.VM3Menu);
+        LinearLayout VM4Menu = findViewById(R.id.VM4Menu);
 
 
         //resultText = findViewById(R.id.pingresult);
         //scrollView = findViewById(R.id.scrollView1);
 
-        back_aps.setOnClickListener(new View.OnClickListener() {
+        back_vm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // startActivity(new Intent(Pingaps.this, Pingmenu.class));
+                // startActivity(new Intent(PingVMMenu.this, Pingmenu.class));
                 finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
-        AP1Menu.setOnClickListener(new View.OnClickListener() {
+        VM1Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pingaps.this, PingAP1.class));
+                startActivity(new Intent(PingVMMenu.this, VMSatelite.class));
             }
         });
-        AP2Menu.setOnClickListener(new View.OnClickListener() {
+        VM2Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pingaps.this, PingAP2.class));
+                startActivity(new Intent(PingVMMenu.this, VMSatelite.class));
             }
         });
-        AP3Menu.setOnClickListener(new View.OnClickListener() {
+        VM3Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pingaps.this, PingAP3.class));
+                startActivity(new Intent(PingVMMenu.this, VMSatelite.class));
             }
         });
-        AP4Menu.setOnClickListener(new View.OnClickListener() {
+        VM4Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pingaps.this, PingAP4.class));
+                startActivity(new Intent(PingVMMenu.this, VMSatelite.class));
             }
         });
     }

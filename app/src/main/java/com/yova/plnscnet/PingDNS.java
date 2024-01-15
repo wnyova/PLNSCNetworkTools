@@ -103,12 +103,8 @@ public class PingDNS extends AppCompatActivity {
         });
     }
     private void doPing() throws Exception {
-        String ipAddress = ("10.7.82.51");
+        String ipAddress = ("192.168.0.1");
 
-        if (TextUtils.isEmpty(ipAddress)) {
-            appendResultsText("Invalid Ip Address");
-            return;
-        }
 
         setEnabled(pingmulai, false);
 

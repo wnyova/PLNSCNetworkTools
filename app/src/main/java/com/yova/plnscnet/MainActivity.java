@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         nameUser = findViewById(R.id.textView2);
-
         // Make a username set to someone login with - Yv
 
         String username=getIntent().getStringExtra("email");
@@ -38,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
             nameUser.setText(""+username);
         }
 
-        LinearLayout button1 = findViewById(R.id.cert);
-        LinearLayout button2 = findViewById(R.id.course);
-        LinearLayout button3 = findViewById(R.id.skills);
+        LinearLayout button1 = findViewById(R.id.pingmainmenu);
+        LinearLayout button2 = findViewById(R.id.portscanningmainmenu);
+        LinearLayout button3 = findViewById(R.id.scandevicemainmenu);
         LinearLayout button4 = findViewById(R.id.wol);
         LinearLayout button5 = findViewById(R.id.FlashlightMenu);
 

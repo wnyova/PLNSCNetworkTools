@@ -27,7 +27,6 @@ import java.net.UnknownHostException;
 public class Pingserver extends AppCompatActivity {
 
     private TextView resultText;
-    private EditText editIpAddress;
     private ScrollView scrollView;
 
     @Override
@@ -57,7 +56,8 @@ public class Pingserver extends AppCompatActivity {
         back_server.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Pingserver.this, Pingmenu.class));
+                //startActivity(new Intent(Pingserver.this, Pingmenu.class));
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -66,25 +66,24 @@ public class Pingserver extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Pingserver.this, PingDNS.class));
-
-               /* AlertDialog.Builder builder = new AlertDialog.Builder(Pingserver.this);
-                ViewGroup viewGroup = findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.customview, viewGroup, false);
-                builder.setView(dialogView);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            doPing();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();*/
-
+            }
+        });
+        ServerMenu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pingserver.this, PingSAN.class));
+            }
+        });
+        ServerMenu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pingserver.this, PingVMWare.class));
+            }
+        });
+        ServerMenu4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pingserver.this, PingSophos.class));
             }
         });
     }

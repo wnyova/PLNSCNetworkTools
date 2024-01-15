@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -15,19 +16,23 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.io.IOException;
+import com.yova.plnscnet.ping.PingResult;
+import com.yova.plnscnet.ping.PingStats;
+
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-
-public class WoL extends AppCompatActivity {
+public class VMSatelite extends AppCompatActivity {
 
     private TextView resultText;
-    private EditText editIpAddress;
     private ScrollView scrollView;
-    private Button hittarget;
+    private Button pingmulai;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -37,16 +42,14 @@ public class WoL extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_wol);
+        setContentView(R.layout.activity_vmsatelite);
 
-        LinearLayout hittarget = findViewById(R.id.hittarget);
-        LinearLayout resetbutton = findViewById(R.id.resetall);
 
         resultText = findViewById(R.id.resultText);
-        editIpAddress = findViewById(R.id.editIpAddress);
         scrollView = findViewById(R.id.scrollView1);
+        pingmulai = findViewById(R.id.pingmulai);
 
-        resetbutton.setOnClickListener(new View.OnClickListener() {
+        /*resetbutton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -55,21 +58,16 @@ public class WoL extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
-        });
+        });*/
 
-        InetAddress ipAddress = IPTools.getLocalIPv4Address();
-        if (ipAddress != null){
-            editIpAddress.setText(ipAddress.getHostAddress());
-        }
-
-        findViewById(R.id.hittarget).setOnClickListener(new View.OnClickListener() {
+        pingmulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            doWakeOnLan();
+                            doPing();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -104,38 +102,54 @@ public class WoL extends AppCompatActivity {
             }
         });
     }
+    private void doPing() throws Exception {
+        String ipAddress = ("plnsc.co.id");
 
-    private void doWakeOnLan() throws IllegalArgumentException {
-        String ipAddress = editIpAddress.getText().toString();
 
-        if (TextUtils.isEmpty(ipAddress)) {
-            appendResultsText("Invalid Ip Address");
-            return;
-        }
+        setEnabled(pingmulai, false);
 
-        setEnabled(hittarget, false);
-
-        appendResultsText("IP address: " + ipAddress);
-
-        String macAddress = ARPInfo.getMACFromIPAddress(ipAddress);
-
-        if (macAddress == null) {
-            appendResultsText("Could not get ARPinfo from IPAddress MAC address, cannot send WOL packet without it.");
-            setEnabled(hittarget, true);
-            return;
-        }
-
-        appendResultsText("MAC address: " + macAddress);
-        appendResultsText("IP address2: " + ARPInfo.getIPAddressFromMAC(macAddress));
-
+        // Perform a single synchronous ping
+        PingResult pingResult = null;
         try {
-            WakeOnLan.sendWakeOnLan(ipAddress, macAddress);
-            appendResultsText("WOL Packet sent");
-        } catch (IOException e) {
-            appendResultsText(e.getMessage());
+            pingResult = Ping.onAddress(ipAddress).setTimeOutMillis(1000).doPing();
+        } catch (UnknownHostException e) {
             e.printStackTrace();
-        } finally {
-            setEnabled(hittarget, true);
+            appendResultsText(e.getMessage());
+            setEnabled(pingmulai, true);
+            return;
         }
+
+        appendResultsText("Pinging : Application");
+        appendResultsText("HostName: VM Application");
+        appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
+
+
+        Ping.onAddress(ipAddress).setTimeOutMillis(1000).setTimes(5).doPing(new Ping.PingListener() {
+            @Override
+            public void onResult(PingResult pingResult) {
+                if (pingResult.isReachable) {
+                    appendResultsText(String.format("%.2f ms", pingResult.getTimeTaken()));
+                } else {
+                    appendResultsText(getString(R.string.timeout));
+                }
+            }
+
+            @Override
+            public void onFinished(PingStats pingStats) {
+                appendResultsText(String.format("Pings: %d, Packets lost: %d",
+                        pingStats.getNoPings(), pingStats.getPacketsLost()));
+                appendResultsText(String.format("Min/Avg/Max Time: %.2f/%.2f/%.2f ms",
+                        pingStats.getMinTimeTaken(), pingStats.getAverageTimeTaken(), pingStats.getMaxTimeTaken()));
+                setEnabled(pingmulai, true);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                // TODO: STUB METHOD
+                setEnabled(pingmulai, true);
+            }
+        });
+
     }
+
 }

@@ -62,8 +62,6 @@ public class Pingnet extends AppCompatActivity {
             }
         });
 
-
-
         InetAddress ipAddress = IPTools.getLocalIPv4Address();
         if (ipAddress != null){
             editIpAddress.setText(ipAddress.getHostAddress());

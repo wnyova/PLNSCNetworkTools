@@ -18,8 +18,6 @@ import android.widget.TextView;
 public class Pingmenu extends AppCompatActivity {
 
 
-    private TextView nameUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,18 +27,14 @@ public class Pingmenu extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-        nameUser = findViewById(R.id.textView2);
 
         // Make a username set to someone login with - Yv
 
-        String username=getIntent().getStringExtra("email");
-        if(!TextUtils.isEmpty(username)){
-            nameUser.setText(""+username);
-        }
 
         LinearLayout button1 = findViewById(R.id.server);
         LinearLayout button2 = findViewById(R.id.aps);
         LinearLayout button3 = findViewById(R.id.vm);
+        LinearLayout button4 = findViewById(R.id.internet);
 
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +54,17 @@ public class Pingmenu extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Pingmenu.this, Pingaps.class));
+                startActivity(new Intent(Pingmenu.this, PingVMMenu.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pingmenu.this, Pingnet.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
 
 /*        Button button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {

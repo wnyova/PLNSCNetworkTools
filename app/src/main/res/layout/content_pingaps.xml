@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e8e8f9"
-    tools:context=".MainActivity">
+    tools:context=".Pingaps">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +44,9 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:src="@drawable/plnsc1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ping_wt"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="12dp"
-                    android:text="Hello,"
+                    android:text="Latency Test"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    android:text="test"
+                    android:text="Access Point"
                     android:textColor="#ffffff"
                     android:textSize="25dp"
                     android:textStyle="bold"
@@ -98,43 +98,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView">
 
-                    <LinearLayout
 
-                        android:id="@+id/pingmainmenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/purple_top_buttons"
-                        android:orientation="vertical"
-
-                        >
-                        <!--                       <Button
-                            android:id="@+id/button1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />-->
-
-                        <ImageView
-                            android:id="@+id/certimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/ping_bk" />
-
-                        <TextView
-                            android:id="@+id/certtext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:text="Ping"
-                            android:textAlignment="center"
-                            android:textColor="#3D405b"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/portscanningmainmenu"
+                        android:id="@+id/back_aps"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -143,73 +110,18 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/courseimg"
+                            android:id="@+id/backbutton"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
-                            app:srcCompat="@drawable/gate_bw" />
+                            app:srcCompat="@drawable/back" />
 
                         <TextView
-                            android:id="@+id/coursetextview"
+                            android:id="@+id/backtextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp"
-                            android:text="Port \nScanning"
-                            android:textAlignment="center"
-                            android:textColor="#3D405b"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/scandevicemainmenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/purple_top_buttons"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/skillsimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_margin="10dp"
-                            app:srcCompat="@drawable/search_bw" />
-
-                        <TextView
-                            android:id="@+id/skillstext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:text="Scan Devices"
-                            android:textAlignment="center"
-                            android:textColor="#3D405b"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/wol"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/purple_top_buttons"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/wolimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_margin="10dp"
-                            app:srcCompat="@drawable/wol_bk" />
-
-                        <TextView
-                            android:id="@+id/woltext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:text="WoL"
+                            android:text="Back"
                             android:textAlignment="center"
                             android:textColor="#3D405b"
                             android:textStyle="bold" />
@@ -221,71 +133,26 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="130sp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/banner_background">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView5"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logo" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="PT. PLNSC"
-                    android:textColor="#ffffff"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageView5"
-                    app:layout_constraintVertical_bias="0.348" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Network Utilities"
-                    android:textColor="#ffffff"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4"
-                    app:layout_constraintVertical_bias="0.238" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView">
 
                 <LinearLayout
-                    android:id="@+id/FlashlightMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:elevation="5dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/AP1Menu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -301,19 +168,56 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <ImageView
-                            android:id="@+id/contactimg"
+                            android:id="@+id/apimg"
+                            android:layout_width="match_parent"
+                            android:layout_height="51dp"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginEnd="16sp"
+                            app:srcCompat="@drawable/apsunifi"/>
+
+                        <TextView
+                            android:id="@+id/aptext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Access Point 1"
+                            android:textAlignment="center"
+                            android:textColor="#3D405b"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/AP2Menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_top_buttons"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_top_buttons">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/AP2img"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginStart="16sp"
                             android:layout_marginEnd="16sp"
-                            app:srcCompat="@drawable/flashlight_bk" />
+                            app:srcCompat="@drawable/apsunifi" />
 
                         <TextView
-                            android:id="@+id/contacttext"
+                            android:id="@+id/AP2text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Flashlight"
+                            android:text="Access Point 2"
                             android:textAlignment="center"
                             android:textColor="#3D405b"
                             android:textSize="14sp"
@@ -321,6 +225,89 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:elevation="4dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/AP3Menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_top_buttons"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_top_buttons">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/AP3img"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginEnd="16sp"
+                            app:srcCompat="@drawable/apsunifi" />
+
+                        <TextView
+                            android:id="@+id/AP3text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Access Point 3"
+                            android:textAlignment="center"
+                            android:textColor="#3D405b"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/AP4Menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_top_buttons"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_top_buttons">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/AP4img"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginEnd="16sp"
+                            app:srcCompat="@drawable/apsunifi" />
+
+                        <TextView
+                            android:id="@+id/AP5text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Access Point 4"
+                            android:textAlignment="center"
+                            android:textColor="#3D405b"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

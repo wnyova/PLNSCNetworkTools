@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e8e8f9"
-    tools:context=".MainActivity">
+    tools:context=".Pingserver">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +44,9 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:src="@drawable/plnsc1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ping_wt"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -262,7 +262,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="VMware eXsi"
+                            android:text="VMware ESXi"
                             android:textAlignment="center"
                             android:textColor="#3D405b"
                             android:textSize="14sp"

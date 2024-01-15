@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         sqliteHelper = new SqliteHelper(this);
-        initCreateAccountTextView();
+        //initCreateAccountTextView(); -- Uncomment this to enable Register
         initViews();
 
         //set click event of login button
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //this method used to set Create account TextView text and click event( maltipal colors
     // for TextView yet not supported in Xml so i have done it programmatically)
-    private void initCreateAccountTextView() {
+    /*private void initCreateAccountTextView() {
         TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
         textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>I don't have account yet. </font><font color='#f2cc8f'>create one</font>"));
         textViewCreateAccount.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    } Uncomment this if you want to enable register  mode*/
 
     //this method is used to connect XML views to its Objects
     private void initViews() {
